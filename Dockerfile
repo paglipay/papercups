@@ -21,12 +21,13 @@ ENV BUCKET_NAME=$BUCKET_NAME
 ENV AWS_REGION=$AWS_REGION
 ENV PAPERCUPS_STRIPE_SECRET=$PAPERCUPS_STRIPE_SECRET
 
-
 RUN mkdir /app
 WORKDIR /app
 
-RUN apk add --no-cache git nodejs yarn python3 npm ca-certificates wget gnupg make erlang gcc libc-dev && \
-    npm install npm@latest -g
+RUN apk add --no-cache git python3 ca-certificates wget gnupg make erlang gcc libc-dev
+
+# Install Node.js 18.x and npm
+RUN apk add --no-cache nodejs-current npm
 
 # Client side
 COPY assets/package.json assets/package-lock.json ./assets/

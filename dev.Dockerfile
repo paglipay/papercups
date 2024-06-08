@@ -31,5 +31,9 @@ COPY lib lib
 RUN mix do compile
 RUN mix phx.digest
 
+COPY docker-entrypoint-prod.sh entrypoint.sh
+COPY docker-entrypoint.sh entrypoint.sh
+COPY docker-entrypoint.sh /entrypoint.sh
 COPY docker-entrypoint-dev.sh entrypoint.sh
+COPY docker-entrypoint-dev.sh /usr/src/app/entrypoint2.sh
 CMD ["/usr/src/app/entrypoint.sh"]
